@@ -32,10 +32,30 @@ export default function RootLayout({
 
   useEffect(() => {
     const token = sessionStorage.getItem("BNC_ADMIN_AUTH");
-    if (token === "BNC_AUTHENTICATED_SESSION_KEY_2026") {
-      setIsAuthenticated(true);
+    if (token) {
+      fetch("/api/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token })
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.success) {
+            setIsAuthenticated(true);
+          } else {
+            sessionStorage.removeItem("BNC_ADMIN_AUTH");
+            setIsAuthenticated(false);
+          }
+          setHasCheckedAuth(true);
+        })
+        .catch(() => {
+          sessionStorage.removeItem("BNC_ADMIN_AUTH");
+          setIsAuthenticated(false);
+          setHasCheckedAuth(true);
+        });
+    } else {
+      setHasCheckedAuth(true);
     }
-    setHasCheckedAuth(true);
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {

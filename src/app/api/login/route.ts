@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +11,15 @@ export async function POST(request: Request) {
     }
 
     if (password === adminPassword) {
-      return NextResponse.json({ success: true, token: "BNC_AUTHENTICATED_SESSION_KEY_2026" });
+      // Generate dynamic secure session token signed with the ADMIN_PASSWORD using HMAC-SHA256
+      const timestamp = Date.now().toString();
+      const signature = crypto
+        .createHmac("sha256", adminPassword)
+        .update(timestamp)
+        .digest("hex");
+      const token = `${timestamp}.${signature}`;
+
+      return NextResponse.json({ success: true, token });
     } else {
       return NextResponse.json({ success: false, error: "Invalid Admin Access Key" }, { status: 401 });
     }
