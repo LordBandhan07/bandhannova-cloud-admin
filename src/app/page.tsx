@@ -49,11 +49,23 @@ export default function OverviewPage() {
 
   const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
+  const getHeaders = (extraHeaders: Record<string, string> = {}): HeadersInit => {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      ...extraHeaders
+    };
+    const hfToken = process.env.NEXT_PUBLIC_HF_BEARER_TOKEN;
+    if (hfToken) {
+      headers["Authorization"] = `Bearer ${hfToken}`;
+    }
+    return headers as HeadersInit;
+  };
+
   const fetchData = async () => {
     try {
       const [resStats, resNodes] = await Promise.all([
-        fetch(`${API_BASE}/cluster/stats`).then((r) => (r.ok ? r.json() : null)),
-        fetch(`${API_BASE}/nodes`).then((r) => (r.ok ? r.json() : null)),
+        fetch(`${API_BASE}/cluster/stats`, { headers: getHeaders() }).then((r) => (r.ok ? r.json() : null)),
+        fetch(`${API_BASE}/nodes`, { headers: getHeaders() }).then((r) => (r.ok ? r.json() : null)),
       ]);
 
       if (resStats && resNodes) {

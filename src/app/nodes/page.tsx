@@ -43,11 +43,23 @@ export default function SpacesBucketsPage() {
 
   const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
+  const getHeaders = (extraHeaders: Record<string, string> = {}): HeadersInit => {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      ...extraHeaders
+    };
+    const hfToken = process.env.NEXT_PUBLIC_HF_BEARER_TOKEN;
+    if (hfToken) {
+      headers["Authorization"] = `Bearer ${hfToken}`;
+    }
+    return headers as HeadersInit;
+  };
+
   const fetchData = async () => {
     try {
       const [resAccounts, resNodes] = await Promise.all([
-        fetch(`${API_BASE}/accounts`).then((r) => (r.ok ? r.json() : [])),
-        fetch(`${API_BASE}/nodes`).then((r) => (r.ok ? r.json() : []))
+        fetch(`${API_BASE}/accounts`, { headers: getHeaders() }).then((r) => (r.ok ? r.json() : [])),
+        fetch(`${API_BASE}/nodes`, { headers: getHeaders() }).then((r) => (r.ok ? r.json() : []))
       ]);
       setAccounts(resAccounts);
       setNodes(resNodes);
@@ -86,7 +98,7 @@ export default function SpacesBucketsPage() {
     try {
       const res = await fetch(`${API_BASE}/accounts`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: getHeaders(),
         body: JSON.stringify({
           user_name: userName.trim(),
           email: email.trim(),
@@ -125,7 +137,10 @@ export default function SpacesBucketsPage() {
     }
 
     try {
-      const res = await fetch(`${API_BASE}/nodes/${targetNode.id}/rebuild`, { method: "POST" });
+      const res = await fetch(`${API_BASE}/nodes/${targetNode.id}/rebuild`, {
+        method: "POST",
+        headers: getHeaders()
+      });
       if (res.ok) {
         triggerNotification(`Rebuild signal dispatched for ${user}-node`);
         fetchData();
@@ -141,7 +156,10 @@ export default function SpacesBucketsPage() {
     if (!confirm(`Are you sure you want to terminate Hugging Face Subscription Profile "@${name}"?\nThis will automatically drop both the compute space and the storage bucket from the database!`)) return;
 
     try {
-      const res = await fetch(`${API_BASE}/accounts/${id}`, { method: "DELETE" });
+      const res = await fetch(`${API_BASE}/accounts/${id}`, {
+        method: "DELETE",
+        headers: getHeaders()
+      });
       if (res.status === 204) {
         triggerNotification(`Subscription @${name} terminated and cleaned`);
         fetchData();

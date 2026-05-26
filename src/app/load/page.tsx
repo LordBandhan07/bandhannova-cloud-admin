@@ -29,10 +29,22 @@ export default function LoadControllerPage() {
 
   const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
+  const getHeaders = (extraHeaders: Record<string, string> = {}): HeadersInit => {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      ...extraHeaders
+    };
+    const hfToken = process.env.NEXT_PUBLIC_HF_BEARER_TOKEN;
+    if (hfToken) {
+      headers["Authorization"] = `Bearer ${hfToken}`;
+    }
+    return headers as HeadersInit;
+  };
+
   const fetchNodes = async () => {
     let data: Node[] = [];
     try {
-      const res = await fetch(`${API_BASE}/nodes`);
+      const res = await fetch(`${API_BASE}/nodes`, { headers: getHeaders() });
       if (res.ok) {
         data = await res.json();
       } else {

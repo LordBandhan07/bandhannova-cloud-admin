@@ -1,0 +1,29 @@
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# next.js build output
+.next/
+out/
+
+# local dev caches
+tsconfig.tsbuildinfo
+.biome/
+biome.json.backup
+
+# logs
+*.log
+next-admin.log
+serve.log
+
+# database
+*.db
+local.db
