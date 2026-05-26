@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #050505;
+  --card-foreground: #ffffff;
+  --border: #141414;
+  --canyon: #ffffff;
+  --canyon-dark: #cccccc;
+  --canyon-glow: rgba(255, 255, 255, 0.05);
+  --digital-blue: #ffffff;
+  --digital-blue-glow: rgba(255, 255, 255, 0.05);
+  --green: #00ff66;
+  --green-dim: rgba(0, 255, 102, 0.05);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #050505;
+  --card-foreground: #ffffff;
+  --border: #141414;
+  --canyon-glow: rgba(255, 255, 255, 0.05);
+  --digital-blue-glow: rgba(255, 255, 255, 0.05);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border-custom: var(--border);
+  --color-canyon: var(--canyon);
+  --color-canyon-dark: var(--canyon-dark);
+  --color-canyon-glow: var(--canyon-glow);
+  --color-digital-blue: var(--digital-blue);
+  --color-digital-blue-glow: var(--digital-blue-glow);
+}
+
+body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif !important;
+  overflow-x: hidden;
+}
+
+/* Custom Webkit scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* Premium interactive grid background */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+/* Smooth glass effect */
+.glass-panel {
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #141414;
+}
+
+/* Custom interactive animation glow */
+.canyon-hover-glow:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.03);
+  border-color: #333333;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.96);
+  }
+}
+
+.pulse-indicator {
+  animation: pulse-slow 2s infinite ease-in-out;
+}

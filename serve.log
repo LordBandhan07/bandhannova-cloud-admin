@@ -1,0 +1,11 @@
+::ffff:127.0.0.1 - - [26/May/2026 09:06:09] "HEAD / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [26/May/2026 09:06:19] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [26/May/2026 09:06:19] code 404, message File not found
+::ffff:127.0.0.1 - - [26/May/2026 09:06:19] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [26/May/2026 09:06:34] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [26/May/2026 09:06:47] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [26/May/2026 09:07:12] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [26/May/2026 09:07:49] code 404, message File not found
+::ffff:127.0.0.1 - - [26/May/2026 09:07:49] "GET /api/cluster/stats HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [26/May/2026 09:08:18] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [26/May/2026 09:09:51] "GET / HTTP/1.1" 304 -

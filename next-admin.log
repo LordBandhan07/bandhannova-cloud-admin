@@ -1,0 +1,28 @@
+
+> bandhannova-cloud-frontend@0.1.0 dev
+> next dev -p 8081
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:8081
+- Network:       http://10.143.226.158:8081
+- Environments: .env
+✓ Ready in 568ms
+
+ GET / 200 in 627ms (next.js: 290ms, application-code: 337ms)
+ GET /nodes 200 in 2.0s (next.js: 1983ms, application-code: 48ms)
+ GET /credentials 200 in 782ms (next.js: 742ms, application-code: 41ms)
+ GET /nodes 200 in 53ms (next.js: 6ms, application-code: 47ms)
+ GET /credentials 200 in 54ms (next.js: 6ms, application-code: 48ms)
+ GET /nodes 200 in 36ms (next.js: 4ms, application-code: 31ms)
+ GET /load 200 in 1075ms (next.js: 1036ms, application-code: 39ms)
+ GET /credentials 200 in 42ms (next.js: 3ms, application-code: 38ms)
+ GET /nodes 200 in 62ms (next.js: 7ms, application-code: 54ms)
+ GET / 200 in 53ms (next.js: 4ms, application-code: 49ms)
+ GET / 200 in 101ms (next.js: 5ms, application-code: 96ms)
+ GET / 200 in 97ms (next.js: 9ms, application-code: 88ms)
+ GET / 200 in 81ms (next.js: 4ms, application-code: 77ms)
+✓ Compiled in 379ms
+ GET / 200 in 325ms (next.js: 244ms, application-code: 81ms)
+ GET / 200 in 334ms (next.js: 196ms, application-code: 138ms)
+ GET / 200 in 327ms (next.js: 8ms, application-code: 319ms)
+ GET / 200 in 325ms (next.js: 224ms, application-code: 102ms)
