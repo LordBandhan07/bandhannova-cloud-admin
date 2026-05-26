@@ -27,7 +27,7 @@ export default function LoadControllerPage() {
   const [logs, setLogs] = useState<string[]>([]);
   const [notification, setNotification] = useState<string | null>(null);
 
-  const API_BASE = "http://localhost:8080/api";
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
   const fetchNodes = async () => {
     let data: Node[] = [];

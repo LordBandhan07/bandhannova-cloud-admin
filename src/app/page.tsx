@@ -47,7 +47,7 @@ export default function OverviewPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [revealedHypervisors, setRevealedHypervisors] = useState<{ [key: string]: boolean }>({});
 
-  const API_BASE = "http://localhost:8080/api";
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
 
   const fetchData = async () => {
     try {
